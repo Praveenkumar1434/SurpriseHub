@@ -14,15 +14,24 @@ app.use(cors({
 
 app.use(express.json());
 
-// load users from file
+// ✅ Detect Vercel (read-only FS)
+const isVercel = process.env.VERCEL === "1";
+let memoryUsers = []; // fallback for Vercel
+
+// load users
 function loadUsers() {
+  if (isVercel) return memoryUsers;
   if (!fs.existsSync("users.json")) return [];
   return JSON.parse(fs.readFileSync("users.json", "utf8"));
 }
 
-// save users to file
+// save users
 function saveUsers(users) {
-  fs.writeFileSync("users.json", JSON.stringify(users, null, 2));
+  if (isVercel) {
+    memoryUsers = users;
+  } else {
+    fs.writeFileSync("users.json", JSON.stringify(users, null, 2));
+  }
 }
 
 // signup
@@ -55,7 +64,6 @@ app.post("/login", (req, res) => {
     res.json({ success: false, message: "Invalid credentials" });
   }
 });
-
 
 // ✅ LOCAL only
 if (require.main === module) {
