@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion"; // ✨ for animations
+import { motion } from "framer-motion";
+import axios from "axios"; // 🚀 axios
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -9,16 +10,19 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-    const data = await res.json();
+    try {
+      const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/login`, {
+        username,
+        password,
+      });
 
-    if (data.success) {
-      navigate("/success");
-    } else {
+      if (res.data.success) {
+        navigate("/success");
+      } else {
+        navigate("/fail");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
       navigate("/fail");
     }
   };
@@ -31,7 +35,6 @@ export default function Login() {
           "url('https://static.vecteezy.com/system/resources/previews/004/299/830/original/shopping-online-on-phone-with-podium-paper-art-modern-pink-background-gifts-box-illustration-free-vector.jpg')",
       }}
     >
-      
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -39,14 +42,11 @@ export default function Login() {
         className="relative bg-white/30 backdrop-blur-lg border border-pink-300/40 
                    shadow-2xl p-8 rounded-2xl w-96 overflow-hidden"
       >
-        
         <div className="absolute inset-0 rounded-2xl border-2 border-transparent 
                         bg-gradient-to-r from-pink-400 via-purple-400 to-pink-500 
                         opacity-70 animate-pulse"></div>
 
-        
         <div className="relative z-10">
-          {/* Animated Heading */}
           <motion.h1
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -57,7 +57,6 @@ export default function Login() {
             Welcome Back ✨
           </motion.h1>
 
-          {/* Form */}
           <form onSubmit={handleLogin} className="flex flex-col space-y-4">
             <motion.input
               whileFocus={{ scale: 1.05 }}
@@ -92,7 +91,6 @@ export default function Login() {
             </motion.button>
           </form>
 
-          {/* Signup Text */}
           <p className="mt-4 text-center text-sm text-gray-700">
             Don’t have an account?{" "}
             <span

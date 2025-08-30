@@ -2,13 +2,23 @@
 const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv");
+
+dotenv.config(); // ✅ Load environment variables
+
 const app = express();
 
-app.use(cors()); // allow frontend to talk to backend
+// ✅ Use frontend URL from .env for CORS
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  credentials: true,
+}));
+
 app.use(express.json());
 
 // load users from file
 function loadUsers() {
+  if (!fs.existsSync("users.json")) return []; // ✅ avoid crash if file missing
   return JSON.parse(fs.readFileSync("users.json", "utf8"));
 }
 
@@ -48,4 +58,8 @@ app.post("/login", (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log("Backend running on http://localhost:5000"));
+// ✅ Use PORT from .env
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () =>
+  console.log(`Backend running on http://localhost:${PORT}`)
+);

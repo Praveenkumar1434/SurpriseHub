@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion"; // ✨ animations
+import axios from "axios"; // ✅ axios import
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -11,19 +12,19 @@ export default function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+      const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/signup`, {
+        username,
+        password,
       });
 
-      if (res.ok) {
+      if (res.status === 200) {
         navigate("/");
       } else {
         alert("Signup failed, try again!");
       }
     } catch (err) {
       console.error(err);
+      alert("Something went wrong!");
     }
   };
 
