@@ -42,7 +42,7 @@ export default function Signup() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative bg-white/30 backdrop-blur-lg border border-pink-300/40 
-                   shadow-2xl p-8 rounded-2xl w-96 overflow-hidden"
+                   shadow-2xl p-8 rounded-2xl w-80 md:w-96 overflow-hidden"
       >
         {/* Gradient Glow Border */}
         <div

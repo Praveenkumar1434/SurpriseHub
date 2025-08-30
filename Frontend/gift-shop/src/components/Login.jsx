@@ -40,7 +40,7 @@ export default function Login() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative bg-white/30 backdrop-blur-lg border border-pink-300/40 
-                   shadow-2xl p-8 rounded-2xl w-96 overflow-hidden"
+                   shadow-2xl p-8 rounded-2xl w-80 md:w-96 overflow-hidden"
       >
         <div className="absolute inset-0 rounded-2xl border-2 border-transparent 
                         bg-gradient-to-r from-pink-400 via-purple-400 to-pink-500 

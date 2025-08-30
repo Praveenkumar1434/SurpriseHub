@@ -18,7 +18,7 @@ export default function Success() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative bg-white/40 backdrop-blur-xl border border-pink-200/40 
-                   shadow-2xl p-10 rounded-2xl w-96 overflow-hidden text-center"
+                   shadow-2xl p-10 rounded-2xl w-80 md:w-96 overflow-hidden text-center"
       >
         {/* Peach-Pink Glow Border */}
         <div
