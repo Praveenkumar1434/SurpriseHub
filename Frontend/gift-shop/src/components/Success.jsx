@@ -12,7 +12,7 @@ export default function Success() {
           "url('https://static.vecteezy.com/system/resources/previews/004/299/830/original/shopping-online-on-phone-with-podium-paper-art-modern-pink-background-gifts-box-illustration-free-vector.jpg')",
       }}
     >
-      {/* Outer Pastel Glow Card */}
+      
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -20,7 +20,7 @@ export default function Success() {
         className="relative bg-white/40 backdrop-blur-xl border border-pink-200/40 
                    shadow-2xl p-10 rounded-2xl w-80 md:w-96 overflow-hidden text-center"
       >
-        {/* Peach-Pink Glow Border */}
+        
         <div
           className="absolute inset-0 rounded-2xl border-2 border-transparent 
                      bg-gradient-to-r from-pink-300 via-rose-300 to-orange-200 
@@ -41,7 +41,6 @@ export default function Success() {
             Welcome to the SurpriseHub🎁
           </motion.h1>
 
-          {/* Subtext */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

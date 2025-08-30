@@ -1,8 +1,8 @@
-// src/components/Signup.jsx
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion"; // ✨ animations
-import axios from "axios"; // ✅ axios import
+import { motion } from "framer-motion"; 
+import axios from "axios";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -36,7 +36,7 @@ export default function Signup() {
           "url('https://static.vecteezy.com/system/resources/previews/004/299/830/original/shopping-online-on-phone-with-podium-paper-art-modern-pink-background-gifts-box-illustration-free-vector.jpg')",
       }}
     >
-      {/* Outer Glassmorphism Card */}
+     
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -44,7 +44,7 @@ export default function Signup() {
         className="relative bg-white/30 backdrop-blur-lg border border-pink-300/40 
                    shadow-2xl p-8 rounded-2xl w-80 md:w-96 overflow-hidden"
       >
-        {/* Gradient Glow Border */}
+        
         <div
           className="absolute inset-0 rounded-2xl border-2 border-transparent 
                      bg-gradient-to-r from-pink-400 via-purple-400 to-pink-500 
@@ -53,7 +53,7 @@ export default function Signup() {
 
         {/* Content */}
         <div className="relative z-10">
-          {/* Animated Heading */}
+         
           <motion.h1
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}

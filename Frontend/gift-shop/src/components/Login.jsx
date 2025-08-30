@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios"; // 🚀 axios
+import axios from "axios"; 
 
 export default function Login() {
   const [username, setUsername] = useState("");

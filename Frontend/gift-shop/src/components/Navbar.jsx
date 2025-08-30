@@ -9,7 +9,7 @@ export default function Navbar() {
                  border-b border-pink-200/30
                  shadow-lg z-50 transition-all duration-500"
     >
-      {/* Logo */}
+      
       <h1
         className="text-xl sm:text-2xl font-extrabold 
                    bg-gradient-to-r from-pink-400 via-rose-400 to-orange-300 
@@ -18,7 +18,7 @@ export default function Navbar() {
         🎁 SurpriseHub
       </h1>
 
-      {/* Nav Links */}
+      
       <div className="flex gap-4 sm:gap-6 items-center">
         <Link
           to="/"

@@ -1,4 +1,4 @@
-// src/components/Fail.jsx
+
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -21,7 +21,7 @@ export default function Fail() {
         className="relative bg-white/40 backdrop-blur-xl border border-red-200/40 
                    shadow-2xl p-10 rounded-2xl w-80 md:w-96 overflow-hidden text-center"
       >
-        {/* Red-Peach Glow Border */}
+       
         <div
           className="absolute inset-0 rounded-2xl border-2 border-transparent 
                      bg-gradient-to-r from-red-300 via-pink-300 to-orange-200 

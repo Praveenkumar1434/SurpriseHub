@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    /\.vercel\.app$/   // allow any Vercel subdomain
+    /\.vercel\.app$/   
   ],
   credentials: true,
 }));
@@ -18,11 +18,11 @@ app.use(cors({
 
 app.use(express.json());
 
-// ✅ Detect Vercel (read-only FS)
+
 const isVercel = process.env.VERCEL === "1";
 let memoryUsers = []; // fallback for Vercel
 
-// load users
+
 function loadUsers() {
   if (isVercel) return memoryUsers;
   if (!fs.existsSync("users.json")) return [];
@@ -69,11 +69,11 @@ app.post("/login", (req, res) => {
   }
 });
 
-// ✅ LOCAL only
+// LOCAL only
 if (require.main === module) {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
 
-// ✅ VERCEL needs this
+//VERCEL 
 module.exports = app;
