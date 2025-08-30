@@ -1,14 +1,12 @@
-// server.js
 const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
-dotenv.config(); // ✅ Load environment variables
+dotenv.config();
 
 const app = express();
 
-// ✅ Use frontend URL from .env for CORS
 app.use(cors({
   origin: process.env.FRONTEND_URL || "http://localhost:5173",
   credentials: true,
@@ -18,7 +16,7 @@ app.use(express.json());
 
 // load users from file
 function loadUsers() {
-  if (!fs.existsSync("users.json")) return []; // ✅ avoid crash if file missing
+  if (!fs.existsSync("users.json")) return [];
   return JSON.parse(fs.readFileSync("users.json", "utf8"));
 }
 
@@ -27,7 +25,7 @@ function saveUsers(users) {
   fs.writeFileSync("users.json", JSON.stringify(users, null, 2));
 }
 
-// signup (create new user)
+// signup
 app.post("/signup", (req, res) => {
   const { username, password } = req.body;
   let users = loadUsers();
@@ -42,7 +40,7 @@ app.post("/signup", (req, res) => {
   res.json({ success: true, message: "Signup successful" });
 });
 
-// login (check existing user)
+// login
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   let users = loadUsers();
@@ -58,8 +56,12 @@ app.post("/login", (req, res) => {
   }
 });
 
-// ✅ Use PORT from .env
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`Backend running on http://localhost:${PORT}`)
-);
+
+// ✅ LOCAL only
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+// ✅ VERCEL needs this
+module.exports = app;
